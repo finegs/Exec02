@@ -36,6 +36,9 @@
     <ClCompile Include="Exec01.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Service.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source.h">
@@ -54,6 +57,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Stack.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

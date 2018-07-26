@@ -588,6 +588,8 @@ int main(int argc, char* argv[]) {
 
 #include "List.h"
 
+#include "Service.h"
+
 void mdestroy(void *data) {
 	if (data == NULL) return;
 	free(data);
@@ -749,6 +751,143 @@ int main(int argc, char ** argv) {
 					}
 				}
 			}
+		}
+		else if (!strcmp(cmd, "udp")) {
+			char *data;
+			char *newData;
+			List al;
+
+			if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+			
+			if (!strcmp("-server", data)) {
+				if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+				char *ip;
+				int port;
+
+				ip = NULL;
+				port = -1;
+
+				if (!strcmp("start", data)) {
+					if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+					if (!strcmp("-port", data)) {
+						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+						int port = atoi(data);
+						if (port < 1 || port > 65535) {
+							continue;
+						}
+
+						startUDPServer("0.0.0.0", port);
+
+					}
+				}
+				else if (!strcmp("stop", data)) {
+					if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+					if (!strcmp("-port", data)) {
+						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+						int port = atoi(data);
+						if (port < 1 || port > 65535) {
+							continue;
+						}
+
+						stopUDPServer("0.0.0.0", port);
+					}
+				}
+				else {
+					printf("Unsupported action : %s\n", data);
+					data = NULL;
+					continue;
+				}
+			}
+			else if (!strcmp("-client", data)) {
+				if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+				char *ip;
+				int port;
+				size_t slen;
+
+				ip = NULL;
+				port = -1;
+				if (!strcmp("connect", data)) {
+					if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+					if (!strcmp("-ip", data)) {
+						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+						
+						if (NULL == (ip = (char*)malloc(slen = sizeof(char)*strlen(data) + 1))) continue;
+
+						memset(ip, '\0', slen);
+						memcpy(ip, data, slen-1);
+					}
+
+					if (!strcmp("-port", data)) {
+						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+						port = atoi(data);
+					}
+
+					if (NULL == ip || port < 1 || port > 65535) {
+						printf("IP is NULL or Unsupported UDP port : %d", port);
+						continue;
+					}
+
+					connectUDPServer(ip, port);
+				}
+				else if (!strcmp("disconnect", data)) {
+					if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+					char *ip;
+					int port;
+					size_t slen;
+
+					ip = NULL;
+					if (!strcmp("-ip", data)) {
+						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+						if (NULL == (ip = (char*)malloc(slen = sizeof(char)*strlen(data) + 1))) continue;
+
+						memset(ip, '\0', slen);
+						memcpy(ip, data, slen - 1);
+					}
+
+					if (!strcmp("-port", data)) {
+						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+						port = atoi(data);
+					}
+
+					if (NULL == ip || port < 1 || port > 65535) {
+						printf("IP is NULL or Unsupported UDP port : %d", port);
+						continue;
+					}
+
+					disconnectUDPServer(ip, port);
+				}
+				else {
+					printf("Unsupported action : %s\n", data);
+					data = NULL;
+					continue;
+				}
+			}
+
+			while ((data = strtok(NULL, " \n")) != NULL) {
+				size_t dataLen;
+				newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data) + 1));
+				memcpy(newData, data, dataLen - 1);
+				memset(newData + dataLen - 1, '\0', 1);
+				if (0 > list_ins_next(&al, NULL, newData)) {
+					isRun = 0;
+					break;
+				}
+			}
+
+
+		}
+		else if (!strcmp(cmd, "tcp")) {
 		}
 		else {
 			printUsage();
