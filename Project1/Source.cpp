@@ -40,6 +40,7 @@ int main(int argc, char** argv)
 
 
 #endif
+
 #if 0
 #include <iostream>
 #include <cstdlib>
@@ -527,6 +528,7 @@ int main(int argc, char* argv[]) {
 #endif
 
 #if 0
+
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -586,10 +588,10 @@ int main(int argc, char* argv[]) {
 
 #include "List.h"
 
-
 void mdestroy(void *data) {
 	if (data == NULL) return;
 	free(data);
+	data = NULL;
 }
 
 void printUsage() {
@@ -602,13 +604,12 @@ int main(int argc, char ** argv) {
 
 	int isRun = 1;
 	List lp;
-	char* line, *cmd;
+	char *line, *cmd;
 	int len = 1024*1024;
 
 	list_init(&lp, mdestroy);
 
 	if (NULL == (line = (char*)malloc(sizeof(char) * len))) return -1;
-	//if (NULL == (word = (char*)malloc(sizeof(char) * len))) return -1;
 
 	memset(line, '\0', len);
 	while (isRun && fgets(line, len, stdin) != NULL) {
@@ -630,47 +631,78 @@ int main(int argc, char ** argv) {
 			isRun = 0;
 			break;
 		}
+		else if (!strcmp(cmd, "cls") || !strcmp(cmd, "clear")) {
+			system("cls");
+			continue;
+		}
+		else if (!strcmp(cmd, "size") || !strcmp(cmd, "info")) {
+			list_info(&lp, '\0');
+			continue;
+		}
 		else if (!strcmp(cmd, "print")) {
-			list_prt(&lp);
+			list_prt(&lp, '1');
+			fflush(stdin);
+		}
+		else if (!strcmp(cmd, "print2")) {
+			list_prt(&lp, '2');
 			fflush(stdin);
 		}
 		else if (!strcmp(cmd, "remove")) {
 			int i, cnt;
-			char *word;
+			char *word, *data;
 
 			cnt = 0;
-			if ((word = strtok(NULL, " \n")) == NULL) {
+			if (NULL == (word = strtok(NULL, " \n"))) {
 				cnt = 1;
 			}
 			
 			if (word) {
 				if (!strcmp("all", word)) {
+					word = NULL;
+					if (NULL == (word = (char*)malloc(sizeof(char) * 2))) return -1;
 
-					printf("Are you sure to remove all?");
-					memset(word, '\0', len);
+					memset(word, '\0', 2);
+					printf("Are you sure to remove all(y/n)? (size=%d)", (int)list_size(&lp));
+
 					scanf("%s", word);
 					if (!strcmp("y", word) || !strcmp("Y", word)) {
 						cnt = list_size(&lp);
 					}
+
+					free(word);
+					word = NULL;
 				}
 				else {
 					cnt = atoi(word);
 					if (cnt > 0) {
-						printf("Are you sure to remove %d words?", cnt);
-						memset(word, '\0', len);
-						scanf("%s", word);
+						word = NULL;
+						if (NULL == (word = (char*)malloc(sizeof(char) * 2))) {
+							isRun = 0;
+							break;
+						}
+						memset(word, '\0', 2);
+
+						printf("Are you sure to remove %d words(y/n)?", cnt);
+
+						scanf("%1s", word);
+						fflush(stdin);
 						if (strcmp("y", word) && strcmp("Y", word)) {
 							cnt = 0;
 						}
+
+						free(word);
+						word = NULL;
 					}
 				}
 			}
+
+			if (cnt > list_size(&lp)) continue;
 			
-			char *data;
 			for (i = 0; i < cnt; i++) {
 				list_rem_next(&lp, NULL, (void**)&data);
 				printf("list[%i]=%s is removed\n", i, data);
 				free(data);
+				data = NULL;
 			}
 		}
 		else if (!strcmp(cmd, "add")) {
@@ -679,11 +711,42 @@ int main(int argc, char ** argv) {
 			while ((data = strtok(NULL, " \n")) != NULL) {
 				size_t dataLen;
 				newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data)+1));
-				memset(newData, '\0', dataLen);
 				memcpy(newData, data, dataLen-1);
+				memset(newData+dataLen-1, '\0', 1);
 				if (0 > list_ins_next(&lp, NULL, newData)) {
 					isRun = 0;
 					break;
+				}
+			}
+		}
+		else if (!strcmp(cmd, "madd")) {
+			int n;
+			char *data;
+			char *newData;
+			if ((data = strtok(NULL, " \n")) == NULL) {
+				fflush(stdin);
+				continue;
+			}
+			else if ((n = atoi(data)) < 1) {
+				fflush(stdin);
+				continue;
+			}
+	
+			while (isRun && (data = strtok(NULL, " \n")) != NULL) {
+				for (int i = 0; i < n; i++) {
+					size_t dataLen;
+					if (NULL == (newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data) + 1)))) {
+						isRun = 0;
+						break;
+					}
+					memcpy(newData, data, dataLen - 1);
+					memset(newData+dataLen-1, '\0', 1);
+					if (0 > list_ins_next(&lp, NULL, newData)) {
+						free(newData);
+						newData = NULL;
+						isRun = 0;
+						break;
+					}
 				}
 			}
 		}
@@ -697,6 +760,8 @@ int main(int argc, char ** argv) {
 	}
 
 	free(line);
+	line = NULL;
+	cmd = NULL;
 
 	list_destroy(&lp);
 

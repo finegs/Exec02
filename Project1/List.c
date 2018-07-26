@@ -15,10 +15,14 @@ void list_destroy(List *list) {
 	void *data;
 
 	while (list_size(list) > 0) {
-		if (list_rem_next(list, NULL, (void**)&data) == 0 && list->destroy != NULL) {
+		if (list_rem_next(list, NULL, (void**)&data) == 0 
+			&& list->destroy != NULL) {
 			list->destroy(data);
 		}
 	}
+
+	list->head = NULL;
+	list->tail = NULL;
 
 	//memset(list, 0, sizeof(List));
 
@@ -81,6 +85,8 @@ int list_rem_next(List *list, ListElmt *element, void **data) {
 		}
 	}
 
+	oldElement->data = NULL;
+	oldElement->next = NULL;
 	free(oldElement);
 
 	list->size--;
@@ -88,13 +94,44 @@ int list_rem_next(List *list, ListElmt *element, void **data) {
 	return 0;
 }
 
-int list_prt(List *list) {
+int list_prt(List *list, char m) {
 	int i;
 	ListElmt *element;
 	if (!list) return -1;
-	if (list_size(list) < 1) return -1;
-	for (i=0, element = list_head(list);element;i++, element=element->next) {
-		printf("list[%d]=%s%s", i, (char*)element->data, (element->next ? ", " : "\n"));
+	if (list_size(list) < 1) {
+		printf("list is empty\n");
+		return 0;
 	}
+
+	switch (m) {
+	case '1':
+	{
+		for (i = 0, element = list_head(list); element; i++, element = element->next) {
+			printf("list[%d]=\"%s\"\n", i, (char*)element->data);
+		}
+	}
+	break;
+	case '2':
+	{
+		for (i = 0, element = list_head(list); element; i++, element = element->next) {
+			printf("idx=%d\ndata=\"%s\"\nlen=%d%s", i, (char*)element->data, (int)strlen((char*)element->data), (element->next ? "\n\n" : "\n"));
+		}
+	}
+	break;
+	default:
+		printf("Unsupported mode : %c", m);
+		break;
+	}
+	return 0;
+}
+
+int list_info(List *list, char m) {
+	int i;
+	if (!list) {
+		printf("list is NULL\n");
+		return -0;
+	}
+
+	printf("sizeof(list)=%d\n", list_size(list));
 	return 0;
 }

@@ -28,7 +28,8 @@ extern "C" {
 
 	int list_ins_next(List *list, ListElmt *element, const void *data);
 	int list_rem_next(List *list, ListElmt *element, void **data);
-	int list_prt(List *list);
+	int list_prt(List *list, char m);
+	int list_info(List *list, char m);
 
 #define list_size(list) ((list)->size)
 #define list_head(list) ((list)->head)
