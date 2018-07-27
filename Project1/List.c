@@ -126,7 +126,6 @@ int list_prt(List *list, char m) {
 }
 
 int list_info(List *list, char m) {
-	int i;
 	if (!list) {
 		printf("list is NULL\n");
 		return -0;

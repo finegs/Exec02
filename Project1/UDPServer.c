@@ -1,5 +1,4 @@
-#ifndef _UDP_SERVER_H
-#define _UDP_SERVER_H
+#if 0
 
 #include <stdio.h>
 #include <stdlib.h>

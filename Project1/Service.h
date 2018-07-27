@@ -16,8 +16,8 @@ extern "C" {
 	int addUDPServer(UDPService* server);
 	int removeUDPServer(UDPService* server);
 
-	int startUDPServer(const char *ip, const int port);
-	int stopUDPServer(const char *ip, const int port);
+	int startUDPServer(SOCKET *sockfd, const char *ip, const int port, int(*handleRecvBuffer)(SOCKET *sfd, const char* recvBuf));
+	int stopUDPServer(SOCKET **sockfd, const char *ip, const int port);
 
 	int connectUDPServer(const char *ip, const int port);
 	int disconnectUDPServer(const char *ip, const int port);

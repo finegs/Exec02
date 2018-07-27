@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1\Projec
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CirQue|x64 = CirQue|x64
+		CirQue|x86 = CirQue|x86
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
 		Exec01|x64 = Exec01|x64
@@ -15,8 +17,14 @@ Global
 		Exec02|x86 = Exec02|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
+		UDPServer2|x64 = UDPServer2|x64
+		UDPServer2|x86 = UDPServer2|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.CirQue|x64.ActiveCfg = CirQue|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.CirQue|x64.Build.0 = CirQue|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.CirQue|x86.ActiveCfg = CirQue|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.CirQue|x86.Build.0 = CirQue|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Debug|x64.ActiveCfg = Debug|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Debug|x64.Build.0 = Debug|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Debug|x86.ActiveCfg = Debug|Win32
@@ -33,6 +41,10 @@ Global
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x64.Build.0 = Release|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x86.ActiveCfg = Release|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x86.Build.0 = Release|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer2|x64.ActiveCfg = UDPServer2|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer2|x64.Build.0 = UDPServer2|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer2|x86.ActiveCfg = UDPServer2|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer2|x86.Build.0 = UDPServer2|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
