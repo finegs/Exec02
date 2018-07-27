@@ -5,13 +5,16 @@
 extern "C" {
 #endif
 
-	typedef struct UDPServer_ {
+	typedef struct UDPService_ {
 		const char* ip;
 		const int port;
-	} UDPServer;
 
-	int addUDPServer(UDPServer* server);
-	int removeUDPServer(UDPServer* server);
+		int (*recv)(int* sockfd, byte recvBuff[]);
+		int (*send)(int* sockfd, byte sendBuff[]);
+	} UDPService;
+
+	int addUDPServer(UDPService* server);
+	int removeUDPServer(UDPService* server);
 
 	int startUDPServer(const char *ip, const int port);
 	int stopUDPServer(const char *ip, const int port);

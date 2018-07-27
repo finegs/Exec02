@@ -238,6 +238,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Exec02|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Stack.c" />
+    <ClCompile Include="UDPServer.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Event.h" />
