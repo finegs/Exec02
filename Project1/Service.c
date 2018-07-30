@@ -13,7 +13,7 @@ int removeUDPServer(UDPService* server) {
 	return 0;
 }
 
-int startUDPServer(SOCKET *sockfd, const char *ip, const int port, int (*handleRecvBuffer)(SOCKET *sfd, const char* recvBuf)) {
+int startUDPServer(SOCKET *sockfd, const char *ip, const int port, int(*handleRecvBuffer)(SOCKET *sfd, const char* recvBuf)) {
 	//int sockfd;
 	char buffer[MAXLINE];
 	char *hello = "Hello from server";
@@ -44,6 +44,7 @@ int startUDPServer(SOCKET *sockfd, const char *ip, const int port, int (*handleR
 	}
 
 	int len, n;
+
 	n = recvfrom(*sockfd, (char*)buffer, MAXLINE, MSG_WAITALL, (struct sockaddr *)&cliaddr, &len);
 
 	buffer[n] = '\0';
@@ -53,8 +54,15 @@ int startUDPServer(SOCKET *sockfd, const char *ip, const int port, int (*handleR
 	return 0;
 }
 
-int stopUDPServer(SOCKET ** sockfd, const char *ip, const int port) {
+int stopUDPServer(SOCKET *sockfd, const char *ip, const int port, int(*handleRecvBuffer)(SOCKET *sfd, const char* recvBuf)) {
 	return 0;
+}
+
+int startUDPService(UDPService* svc) {
+	startUDPServer(svc->sockfd, svc->ip, svc->port, svc->recv);
+}
+int destroyUDPService(UDPService* svc) {
+	stopUDPServer(svc->sockfd, svc->ip, svc->port, NULL);
 }
  
 int connectUDPServer(const char *ip, const int port) {

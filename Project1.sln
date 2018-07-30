@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1\Project1.vcxproj", "{4473396B-82AA-4B96-A4E3-6BED7479C4CD}"
 EndProject
@@ -15,10 +15,16 @@ Global
 		Exec01|x86 = Exec01|x86
 		Exec02|x64 = Exec02|x64
 		Exec02|x86 = Exec02|x86
+		mthread_ex01|x64 = mthread_ex01|x64
+		mthread_ex01|x86 = mthread_ex01|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-		UDPServer2|x64 = UDPServer2|x64
-		UDPServer2|x86 = UDPServer2|x86
+		UDPClient|x64 = UDPClient|x64
+		UDPClient|x86 = UDPClient|x86
+		UDPServer_2|x64 = UDPServer_2|x64
+		UDPServer_2|x86 = UDPServer_2|x86
+		UDPServer|x64 = UDPServer|x64
+		UDPServer|x86 = UDPServer|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.CirQue|x64.ActiveCfg = CirQue|x64
@@ -37,16 +43,31 @@ Global
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Exec02|x64.Build.0 = Exec02|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Exec02|x86.ActiveCfg = Exec02|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Exec02|x86.Build.0 = Exec02|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.mthread_ex01|x64.ActiveCfg = mthread_ex01|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.mthread_ex01|x64.Build.0 = mthread_ex01|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.mthread_ex01|x86.ActiveCfg = mthread_ex01|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.mthread_ex01|x86.Build.0 = mthread_ex01|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x64.ActiveCfg = Release|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x64.Build.0 = Release|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x86.ActiveCfg = Release|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x86.Build.0 = Release|Win32
-		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer2|x64.ActiveCfg = UDPServer2|x64
-		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer2|x64.Build.0 = UDPServer2|x64
-		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer2|x86.ActiveCfg = UDPServer2|Win32
-		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer2|x86.Build.0 = UDPServer2|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPClient|x64.ActiveCfg = UDPClient|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPClient|x64.Build.0 = UDPClient|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPClient|x86.ActiveCfg = UDPClient|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPClient|x86.Build.0 = UDPClient|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer_2|x64.ActiveCfg = UDPServer2|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer_2|x64.Build.0 = UDPServer2|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer_2|x86.ActiveCfg = UDPServer|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer_2|x86.Build.0 = UDPServer|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer|x64.ActiveCfg = UDPServer|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer|x64.Build.0 = UDPServer|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer|x86.ActiveCfg = UDPServer2|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.UDPServer|x86.Build.0 = UDPServer2|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C04BE22-E2AD-4EEE-B89B-0270FDCCFD05}
 	EndGlobalSection
 EndGlobal

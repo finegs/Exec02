@@ -39,16 +39,28 @@
     <ClCompile Include="Service.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="UDPServer.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="UDPServer2.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CirQue.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="FileTrans.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="udpclient.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="UDPServer_1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="UDPServer_2.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="udpserver.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="myhash.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mthread_c.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,6 +84,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Service.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="myhash.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

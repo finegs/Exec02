@@ -779,7 +779,11 @@ int main(int argc, char ** argv) {
 							continue;
 						}
 
-						startUDPServer("0.0.0.0", port);
+						UDPService* udpSvc = (UDPService*)malloc(sizeof(UDPService));
+						udpSvc->ip = "0.0.0.0";
+						udpSvc->port = port;
+
+						startUDPService(udpSvc);
 
 					}
 				}
@@ -794,7 +798,12 @@ int main(int argc, char ** argv) {
 							continue;
 						}
 
-						stopUDPServer("0.0.0.0", port);
+
+						UDPService* udpSvc = (UDPService*)malloc(sizeof(UDPService));
+						udpSvc->ip = "0.0.0.0";
+						udpSvc->port = port;
+
+						destroyUDPService(udpSvc);
 					}
 				}
 				else {
