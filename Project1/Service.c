@@ -13,14 +13,14 @@ int removeUDPServer(UDPService* server) {
 	return 0;
 }
 
-int startUDPServer(SOCKET *sockfd, const char *ip, const int port, int(*handleRecvBuffer)(SOCKET *sfd, const char* recvBuf)) {
+int startUDPService(UDPService* svc) {
 	//int sockfd;
 	char buffer[MAXLINE];
 	char *hello = "Hello from server";
 	struct sockaddr_in servaddr, cliaddr;
 
 	// Creating socket file descriptor
-	if ((*sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
+	if ((*(svc->sockfd) = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
 		perror("socket creation failed");
 		//exit(EXIT_FAILURE);
 		return EXIT_FAILURE;
@@ -32,10 +32,10 @@ int startUDPServer(SOCKET *sockfd, const char *ip, const int port, int(*handleRe
 	// Filling server information
 	servaddr.sin_family = AF_INET; // IPv4
 	servaddr.sin_addr.s_addr = INADDR_ANY;
-	servaddr.sin_port = htons(port);
+	servaddr.sin_port = htons(svc->port);
 
 	// Bind the socket with the server address
-	if (bind(*sockfd, (const struct sockaddr *)&servaddr,
+	if (bind(*(svc->sockfd), (const struct sockaddr *)&servaddr,
 		sizeof(servaddr)) < 0)
 	{
 		perror("bind failed");
@@ -45,25 +45,25 @@ int startUDPServer(SOCKET *sockfd, const char *ip, const int port, int(*handleRe
 
 	int len, n;
 
-	n = recvfrom(*sockfd, (char*)buffer, MAXLINE, MSG_WAITALL, (struct sockaddr *)&cliaddr, &len);
+	while (svc->run) {
 
-	buffer[n] = '\0';
-	
-	handleRecvBuffer(sockfd, buffer);
+        len = n = 0;
+
+		n = recvfrom(*(svc->sockfd), (char*)buffer, MAXLINE, MSG_WAITALL, (struct sockaddr *)&cliaddr, &len);
+
+		buffer[n] = '\0';
+
+		svc->recv(svc, buffer);
+	}
 
 	return 0;
 }
 
-int stopUDPServer(SOCKET *sockfd, const char *ip, const int port, int(*handleRecvBuffer)(SOCKET *sfd, const char* recvBuf)) {
+int stopUDPService(UDPService* svc) {
 	return 0;
 }
 
-int startUDPService(UDPService* svc) {
-	startUDPServer(svc->sockfd, svc->ip, svc->port, svc->recv);
-}
-int destroyUDPService(UDPService* svc) {
-	stopUDPServer(svc->sockfd, svc->ip, svc->port, NULL);
-}
+
  
 int connectUDPServer(const char *ip, const int port) {
 	return 0;

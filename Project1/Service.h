@@ -16,25 +16,24 @@
 extern "C" {
 #endif
 
+	typedef struct UDPService_ UDPService;
 	typedef struct UDPService_ {
 		int mode; // 1 : Passive, 2 : Acivive
+		int run;  // 1 : Run, 0 : Stop, 2 : Pause
 		char* ip;
 		int port;
 
 		SOCKET* sockfd;
 
-		int (*recv)(int* sockfd, byte* recvBuff, const char* ip, const char* port);
-		int (*send)(int* sockfd, byte* sendBuff, const char* ip, const char* port);
+		int (*recv)(UDPService* udpSvc, byte* recvBuff);
+		int (*send)(UDPService* udpSvc, byte* recvBuff);
 	} UDPService;
 
 	int addUDPServer(UDPService* server);
 	int removeUDPServer(UDPService* server);
 
-	int startUDPServer(SOCKET *sockfd, const char *ip, const int port, int(*handleRecvBuffer)(SOCKET *sfd, const char* recvBuf));
-	int stopUDPServer(SOCKET *sockfd, const char *ip, const int port, int(*handleRecvBuffer)(SOCKET *sfd, const char* recvBuf));
-
 	int startUDPService(UDPService* svc);
-	int destroyUDPService(UDPService* svc);
+	int stopUDPService(UDPService* svc);
 
 	int connectUDPServer(const char *ip, const int port);
 	int disconnectUDPServer(const char *ip, const int port);

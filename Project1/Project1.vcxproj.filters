@@ -60,7 +60,10 @@
     <ClCompile Include="myhash.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="mthread_c.c">
+    <ClCompile Include="mthread2.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="mthread.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
