@@ -50,10 +50,15 @@ int main(int argc, char* argv[]) {
 }
 
 void stopThread() { // stopThread threads
-    while (threadDeleteNr > 0) {
+    //while (threadDeleteNr > 0) {
         ReleaseMutex(hRunMutex);
-        threadDeleteNr--;
-    }
+    //    threadDeleteNr--;
+    //    threadNr--;
+    //}
+
+    //WaitForSingleObject(hScreenMutex, INFINITE);
+    //clearScreen();
+    //ReleaseMutex(hScreenMutex);
 }
 
 void shutDownAll() { // Shutdown all threads
@@ -74,19 +79,27 @@ void readInput() { // Dispatch and Count threads
         if (tolower(keyInfo) == 'a' &&
             threadNr < MAX_THREADS) {
             threadNr++;
-            _beginthread(bounceProc, 0, &threadNr);
+            _beginthread(bounceProc, 0, &threadNr, threadNr);
             writeTitle(threadNr);
         }
-        if (tolower(keyInfo) == 'd' && threadNr > 0) {
-            threadDeleteNr++;
+        if (tolower(keyInfo) == 'd' && 
+            threadDeleteNr == 0 &&
+            threadNr > 0) {
+            threadDeleteNr = threadNr;
             stopThread();
+        }
+
+        if (tolower(keyInfo) == 'c') {
+            WaitForSingleObject(hScreenMutex, INFINITE);
+            clearScreen();
+            ReleaseMutex(hScreenMutex);
         }
     } while (tolower(keyInfo) != 'q');
 
     shutDownAll();
 }
 
-void bounceProc(void* pMyId) {
+void bounceProc(void* pMyId, int myThreadId) {
     char myCell, oldCell;
     WORD myAttrib, oldAttrb;
     char    blankCell = 0x20;
@@ -124,6 +137,8 @@ void bounceProc(void* pMyId) {
 
         WriteConsoleOutputCharacter(hConsoleOut, &myCell, 1, coords, &dummy);
         WriteConsoleOutputCharacter(hConsoleOut, &myAttrib, 1, coords, &dummy);
+
+        // Release screen Mutex
         ReleaseMutex(hScreenMutex);
 
         // Increment the coordinates for next placement of the block.
@@ -141,20 +156,39 @@ void bounceProc(void* pMyId) {
             delta.Y = -delta.Y;
             Beep(600, 50);
         }
+
+        if (WaitForSingleObject(hRunMutex, 75L) == WAIT_TIMEOUT) {
+            // break if threadDeleteNr is same myId
+            if (threadDeleteNr > 0 && threadDeleteNr == *myId) {
+                threadDeleteNr = 0;
+                break;
+            }
+            continue;
+        }
+        else {
+            // break if threadDeleteNr is same myId
+            if (threadDeleteNr > 0 && threadDeleteNr == *myId) {
+                threadDeleteNr = 0;
+                break;
+            }
+        }
     }
     // Repeat while RunMutex is still taken.
-    while (WaitForSingleObject(hRunMutex, 75L) == WAIT_TIMEOUT);
+    while (1);
+
+    threadNr--;
+    writeTitle(threadNr);
 }
 
 void writeTitle(int threadNum) {
     enum {
-        sizeOfThreadMsg = 80
+        sizeOfThreadMsg = 200
     };
 
     char NthreadMsg[sizeOfThreadMsg];
 
-    sprintf_s(NthreadMsg, sizeOfThreadMsg, "Threads running: %02d, Press 'A' "
-        "to start a thread, 'D' to stop a thread, 'Q' to quit.", threadNum);
+    sprintf_s(NthreadMsg, sizeOfThreadMsg, "Threads running: %02d, Press 'A' to start a thread, "\
+                        "'D' to stop a thread, 'Q' to quit.", threadNum);
     SetConsoleTitle(NthreadMsg);
 }
 
