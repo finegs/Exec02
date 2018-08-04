@@ -38,7 +38,6 @@ extern "C" {
 	int connectUDPServer(const char *ip, const int port);
 	int disconnectUDPServer(const char *ip, const int port);
 
-
 #if __CPLUSCPLUS
 }
 #endif

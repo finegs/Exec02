@@ -13,21 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Chat">
-      <UniqueIdentifier>{9fc607c5-5c1f-49d4-97f7-030f7844a4ee}</UniqueIdentifier>
+    <Filter Include="소스 파일\TestMain">
+      <UniqueIdentifier>{69377006-0fda-41d8-a408-65a66b05c867}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="List.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Stack.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Queue.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Events.c">
@@ -42,56 +33,14 @@
     <ClCompile Include="Service.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CirQue.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="FileTrans.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="udpclient.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="UDPServer_1.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="UDPServer_2.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="udpserver.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="myhash.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="mthread2.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="mthread.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Main01.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\TestMain</Filter>
     </ClCompile>
     <ClCompile Include="Main02.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\TestMain</Filter>
     </ClCompile>
     <ClCompile Include="Main03.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MLogger.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="chat\MyChatCli01.cpp">
-      <Filter>소스 파일\Chat</Filter>
-    </ClCompile>
-    <ClCompile Include="chat\MyChatSrv01.cpp">
-      <Filter>소스 파일\Chat</Filter>
-    </ClCompile>
-    <ClCompile Include="chat\MyCli01.cpp">
-      <Filter>소스 파일\Chat</Filter>
-    </ClCompile>
-    <ClCompile Include="chat\MySrv01.cpp">
-      <Filter>소스 파일\Chat</Filter>
+      <Filter>소스 파일\TestMain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,12 +67,6 @@
     </ClInclude>
     <ClInclude Include="myhash.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MLogger.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="chat\MyChatMessage.hpp">
-      <Filter>소스 파일\Chat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

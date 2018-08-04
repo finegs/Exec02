@@ -149,12 +149,12 @@ void bounceProc(void* pMyId) {
 
 void writeTitle(int threadNum) {
     enum {
-        sizeOfThreadMsg = 80
+        sizeOfThreadMsg = 200
     };
 
     char NthreadMsg[sizeOfThreadMsg];
 
-    sprintf_s(NthreadMsg, sizeOfThreadMsg, "Threads running: %02d, Press 'A' "
+    sprintf_s(NthreadMsg, sizeOfThreadMsg, "Threads running: %02d, Press 'A' "\
         "to start a thread, 'D' to stop a thread, 'Q' to quit.", threadNum);
     SetConsoleTitle(NthreadMsg);
 }

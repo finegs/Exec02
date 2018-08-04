@@ -35,8 +35,7 @@ int startUDPService(UDPService* svc) {
 	servaddr.sin_port = htons(svc->port);
 
 	// Bind the socket with the server address
-	if (bind(*(svc->sockfd), (const struct sockaddr *)&servaddr,
-		sizeof(servaddr)) < 0)
+	if (bind(*(svc->sockfd), (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
 	{
 		perror("bind failed");
 		//exit(EXIT_FAILURE);
@@ -62,7 +61,6 @@ int startUDPService(UDPService* svc) {
 int stopUDPService(UDPService* svc) {
 	return 0;
 }
-
 
  
 int connectUDPServer(const char *ip, const int port) {
