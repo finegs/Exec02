@@ -520,6 +520,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="chat\MyChatCli01.cpp" />
+    <ClCompile Include="chat\MyChatSrv01.cpp" />
+    <ClCompile Include="chat\MyCli01.cpp" />
+    <ClCompile Include="chat\MySrv01.cpp" />
     <ClCompile Include="CirQue.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Exec02|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPClient|x64'">true</ExcludedFromBuild>
@@ -654,6 +658,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="chat\MyChatMessage.hpp" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="List.h" />
