@@ -29,6 +29,14 @@
       <Configuration>Exec02</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Main01|Win32">
+      <Configuration>Main01</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Main01|x64">
+      <Configuration>Main01</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="MThread2|Win32">
       <Configuration>MThread2</Configuration>
       <Platform>Win32</Platform>
@@ -201,7 +209,13 @@
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='UDPServer|Win32'">
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Main01|Win32'" Label="Configuration">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Main01|x64'" Label="Configuration">
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -286,6 +300,9 @@
     <TargetName>$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">
+    <TargetName>$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">
     <TargetName>$(Configuration)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -497,6 +514,11 @@
       <AdditionalDependencies>Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">
+    <Link>
+      <AdditionalDependencies>Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CirQue.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Exec02|x64'">true</ExcludedFromBuild>
@@ -505,6 +527,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer2|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Events.c" />
     <ClCompile Include="Exec01.c">
@@ -519,6 +542,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CirQue|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Exec02.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -528,20 +552,48 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CirQue|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="FileTrans.cpp" />
     <ClCompile Include="List.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Main01.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPClient|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer2|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Main02.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPClient|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer2|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Main03.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPClient|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer2|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="MLogger.cpp" />
     <ClCompile Include="mthread2.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CirQue|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='mthread_ex01|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="mthread.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPClient|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">true</ExcludedFromBuild>
@@ -559,6 +611,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CirQue|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Stack.c" />
     <ClCompile Include="udpclient.c">
@@ -566,6 +619,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CirQue|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="udpserver.c">
@@ -573,6 +627,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CirQue|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer2|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="UDPServer_1.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer2|x64'">true</ExcludedFromBuild>
@@ -580,6 +636,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CirQue|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="UDPServer_2.c">
@@ -592,6 +649,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread2|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MThread1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UDPServer|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Main01|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CirQue|x64'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
@@ -599,6 +657,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="MLogger.h" />
     <ClInclude Include="myhash.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Service.h" />
