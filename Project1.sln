@@ -15,6 +15,8 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		ChatServer|x64 = ChatServer|x64
 		ChatServer|x86 = ChatServer|x86
+		ChronoMain|x64 = ChronoMain|x64
+		ChronoMain|x86 = ChronoMain|x86
 		CirQue|x64 = CirQue|x64
 		CirQue|x86 = CirQue|x86
 		Debug|x64 = Debug|x64
@@ -23,6 +25,8 @@ Global
 		Exec01|x86 = Exec01|x86
 		Exec02|x64 = Exec02|x64
 		Exec02|x86 = Exec02|x86
+		LockFreeMain|x64 = LockFreeMain|x64
+		LockFreeMain|x86 = LockFreeMain|x86
 		Main01|x64 = Main01|x64
 		Main01|x86 = Main01|x86
 		Mthread1|x64 = Mthread1|x64
@@ -40,6 +44,10 @@ Global
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.ChatServer|x64.ActiveCfg = ChatServer|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.ChatServer|x86.ActiveCfg = ChatServer|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.ChatServer|x86.Build.0 = ChatServer|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.ChronoMain|x64.ActiveCfg = ChronoMain|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.ChronoMain|x64.Build.0 = ChronoMain|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.ChronoMain|x86.ActiveCfg = ChronoMain|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.ChronoMain|x86.Build.0 = ChronoMain|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.CirQue|x64.ActiveCfg = CirQue|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.CirQue|x64.Build.0 = CirQue|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.CirQue|x86.ActiveCfg = CirQue|Win32
@@ -56,6 +64,8 @@ Global
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Exec02|x64.Build.0 = CirQue|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Exec02|x86.ActiveCfg = Exec02|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Exec02|x86.Build.0 = Exec02|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.LockFreeMain|x64.ActiveCfg = ChronoMain|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.LockFreeMain|x86.ActiveCfg = ChronoMain|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Main01|x64.ActiveCfg = CirQue|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Main01|x64.Build.0 = CirQue|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Main01|x86.ActiveCfg = Main01|Win32
@@ -83,6 +93,10 @@ Global
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.ChatServer|x64.ActiveCfg = ChatServer|x64
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.ChatServer|x86.ActiveCfg = ChatServer|Win32
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.ChatServer|x86.Build.0 = ChatServer|Win32
+		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.ChronoMain|x64.ActiveCfg = ChronoMain|x64
+		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.ChronoMain|x64.Build.0 = ChronoMain|x64
+		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.ChronoMain|x86.ActiveCfg = ChronoMain|Win32
+		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.ChronoMain|x86.Build.0 = ChronoMain|Win32
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.CirQue|x64.ActiveCfg = Release|x64
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.CirQue|x64.Build.0 = Release|x64
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.CirQue|x86.ActiveCfg = Release|Win32
@@ -99,6 +113,8 @@ Global
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.Exec02|x64.Build.0 = Release|x64
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.Exec02|x86.ActiveCfg = Release|Win32
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.Exec02|x86.Build.0 = Release|Win32
+		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.LockFreeMain|x64.ActiveCfg = ChronoMain|x64
+		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.LockFreeMain|x86.ActiveCfg = ChronoMain|Win32
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.Main01|x64.ActiveCfg = Release|x64
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.Main01|x64.Build.0 = Release|x64
 		{A79CCDDE-D9F8-4782-A289-375DFB9B85A0}.Main01|x86.ActiveCfg = Release|Win32
@@ -127,6 +143,10 @@ Global
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.ChatServer|x64.Build.0 = ChatServer|x64
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.ChatServer|x86.ActiveCfg = ChatServer|Win32
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.ChatServer|x86.Build.0 = ChatServer|Win32
+		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.ChronoMain|x64.ActiveCfg = ChronoMain|x64
+		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.ChronoMain|x64.Build.0 = ChronoMain|x64
+		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.ChronoMain|x86.ActiveCfg = ChronoMain|Win32
+		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.ChronoMain|x86.Build.0 = ChronoMain|Win32
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.CirQue|x64.ActiveCfg = Release|x64
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.CirQue|x64.Build.0 = Release|x64
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.CirQue|x86.ActiveCfg = Release|Win32
@@ -143,6 +163,8 @@ Global
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.Exec02|x64.Build.0 = Release|x64
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.Exec02|x86.ActiveCfg = Release|Win32
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.Exec02|x86.Build.0 = Release|Win32
+		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.LockFreeMain|x64.ActiveCfg = ChronoMain|x64
+		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.LockFreeMain|x86.ActiveCfg = ChronoMain|Win32
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.Main01|x64.ActiveCfg = Release|x64
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.Main01|x64.Build.0 = Release|x64
 		{43AFDA4B-E399-4C1F-A125-68F226A6CBA3}.Main01|x86.ActiveCfg = Release|Win32
@@ -170,6 +192,10 @@ Global
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.ChatServer|x64.ActiveCfg = Release|x64
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.ChatServer|x86.ActiveCfg = Release|Win32
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.ChatServer|x86.Build.0 = Release|Win32
+		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.ChronoMain|x64.ActiveCfg = ChronoMain|x64
+		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.ChronoMain|x64.Build.0 = ChronoMain|x64
+		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.ChronoMain|x86.ActiveCfg = ChronoMain|Win32
+		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.ChronoMain|x86.Build.0 = ChronoMain|Win32
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.CirQue|x64.ActiveCfg = Release|x64
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.CirQue|x64.Build.0 = Release|x64
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.CirQue|x86.ActiveCfg = Release|Win32
@@ -186,6 +212,10 @@ Global
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.Exec02|x64.Build.0 = Release|x64
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.Exec02|x86.ActiveCfg = Release|Win32
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.Exec02|x86.Build.0 = Release|Win32
+		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.LockFreeMain|x64.ActiveCfg = LockFreeMain|x64
+		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.LockFreeMain|x64.Build.0 = LockFreeMain|x64
+		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.LockFreeMain|x86.ActiveCfg = LockFreeMain|Win32
+		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.LockFreeMain|x86.Build.0 = LockFreeMain|Win32
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.Main01|x64.ActiveCfg = Release|x64
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.Main01|x64.Build.0 = Release|x64
 		{DFA8F7F0-A256-4C29-A650-83DAEDA6DEB0}.Main01|x86.ActiveCfg = Release|Win32
