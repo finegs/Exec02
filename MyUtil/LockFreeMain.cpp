@@ -22,12 +22,12 @@ void producer(void)
     }
 }
 
-boost::atomic<bool> done(false);
+boost::atomic<bool> isAllThreadStarted(false);
 
 void consumer(void)
 {
     int value;
-    while (!done) {
+    while (!isAllThreadStarted) {
         while (stack.pop(value))
             ++consumer_count;
     }
@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
         consumer_threads.create_thread(consumer);
 
     producer_threads.join_all();
-    done = true;
+    isAllThreadStarted = true;
 
     consumer_threads.join_all();
 
