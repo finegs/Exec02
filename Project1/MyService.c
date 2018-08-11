@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <WinSock2.h>
 
-#include "service.h"
+#include "MyService.h"
 
 #define MAXLINE 1024
 

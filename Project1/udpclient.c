@@ -42,8 +42,9 @@ int main()
 #else
 	int sock;
 #endif
-	int size;
-	int nbytes, flags;
+	size_t size;
+    size_t nbytes;
+    int flags;
 	int i;
 	char * cp;
 #ifdef WIN
@@ -66,7 +67,7 @@ int main()
 	/* create a socket to send on */
 	sock = socket(PF_INET, SOCK_DGRAM, 0);
 	if (sock < 0) {
-		printf("socket error = %ld\n", sock);
+		printf("socket error = %llu\n", sock);
 		return -1;
 	}
 	/* we fill in the address family and port, but we do not know the destination IP address yet */
@@ -97,13 +98,13 @@ int main()
 		/* get the string length so we send exactly this many characters */
 		nbytes = strlen(buffer);
 		flags = 0;
-		size = sendto(sock, (char *)buffer, nbytes, flags, (struct sockaddr *)&target_pc, sizeof(target_pc));
-		printf("msg size = %d size = %d\n", nbytes, size);
+		size = sendto(sock, (char *)buffer, (int)nbytes, flags, (struct sockaddr *)&target_pc, sizeof(target_pc));
+		printf("msg size = %d size = %d\n", (int)nbytes, (int)size);
 
 		//added
 
 		int addrlen = sizeof(target_pc);
-		size = recvfrom(sock, buffer, nbytes, flags, (struct sockaddr *)&target_pc, &addrlen);
+		size = recvfrom(sock, buffer, (int)nbytes, flags, (struct sockaddr *)&target_pc, &addrlen);
 		if ((size > 0) && (size < 99)) {
 			buffer[size] = '\0';      //add the null byte so buffer now holds a string 
 			i = puts((char *)buffer);    // write this string to the display 

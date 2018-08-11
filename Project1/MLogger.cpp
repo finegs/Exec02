@@ -10,8 +10,7 @@
 #include <thread>
 #include "MLogger.h"
 
-
-static char* nowTime(char* str) {
+char* nowTime(char* str) {
 	char t[24];
 	struct tm timeinfo;
 	struct timeb tm;
@@ -24,7 +23,7 @@ static char* nowTime(char* str) {
 	return str;
 }
 
-static char* t2s(char* str, timeb tm) {
+char* t2s(char* str, timeb tm) {
 	char t[24];
 	struct tm ti;
 

@@ -3,9 +3,9 @@
 
 #include <stdlib.h>
 
-#include "List.h"
-#include "Queue.h"
-#include "Event.h"
+#include "MyList.h"
+#include "MyQueue.h"
+#include "MyEvent.h"
 
 #ifdef __cpluscplus
 extern "C" {

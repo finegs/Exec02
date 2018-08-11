@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Event.h"
-#include "Events.h"
-#include "Queue.h"
+#include "MyEvent.h"
+#include "MyEvents.h"
+#include "MyQueue.h"
 
 int receive_event(Queue *queue, const Event *event) {
 	Event *newEvent;

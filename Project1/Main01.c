@@ -23,7 +23,10 @@ HANDLE hRunMutex;                   // "Keep Running" mutex
 HANDLE hScreenMutex;                // "Screen Update" mutex
 int    threadNr;                    // Number of threads started
 int    threadDeleteNr;              // Number of thread to Delete
-CONSOLE_SCREEN_BUFFER_INFO csbiInfo; // Console Information
+CONSOLE_SCREEN_BUFFER_INFO csbiInfo; // Console 
+
+int a = 1;
+int a;
 
 int main(int argc, char* argv[]) {
 
@@ -89,7 +92,7 @@ void readInput() { // Dispatch and Count threads
 
 void bounceProc(void* pMyId) {
     char myCell, oldCell;
-    WORD myAttrib, oldAttrb;
+    char myAttrib, oldAttrb;
     char    blankCell = 0x20;
     COORD   coords, delta;
     COORD   old = { 0,0 };

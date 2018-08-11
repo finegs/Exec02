@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
-#include "List.h"
-#include "Stack.h"
+#include "MyList.h"
+#include "MyStack.h"
 
 int stack_push(Stack *stack, const void *data) {
 	return list_ins_next(stack, NULL, data);

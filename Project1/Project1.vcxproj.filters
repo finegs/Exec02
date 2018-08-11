@@ -13,60 +13,37 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\TestMain">
-      <UniqueIdentifier>{69377006-0fda-41d8-a408-65a66b05c867}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="Main03.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Events.c">
+    <ClCompile Include="Main01.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Exec02.c">
+    <ClCompile Include="Main02.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Exec01.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Service.c">
+    <ClCompile Include="Exec02.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Main01.c">
-      <Filter>소스 파일\TestMain</Filter>
+    <ClCompile Include="FileTransMain.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Main02.cpp">
-      <Filter>소스 파일\TestMain</Filter>
+    <ClCompile Include="..\MyUtil\LockFreeMain.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Main03.cpp">
-      <Filter>소스 파일\TestMain</Filter>
+    <ClCompile Include="MThread01.c">
+      <Filter>소스 파일</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Events.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="List.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Queue.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Service.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="myhash.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
+    <ClCompile Include="MThread02.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTestMain01.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

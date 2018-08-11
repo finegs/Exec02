@@ -1,4 +1,4 @@
-#include "myhash.h"
+#include "MyHash.h"
 
 unsigned int myhash(unsigned int prime_tabsiz, const void* key) {
 	const char *ptr;

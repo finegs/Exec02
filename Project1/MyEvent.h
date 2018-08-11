@@ -3,8 +3,8 @@
 
 #include <stdlib.h>
 
-#include "List.h"
-#include "Queue.h"
+#include "MyList.h"
+#include "MyQueue.h"
 
 #ifdef __cpluscplus
 extern "C" {
