@@ -10,12 +10,13 @@
 #include <sys/socket.h>
 #endif
 #define PORT 20009
+#define BUF_LEN 100
 /* simple upd server
 this program receives short messages (<99 characters) from any IP address
 and writes them to the display
 be sure to use the linker line option "-l wsock32"
 */
-int main()
+int main(int argc, char* argv[])
 {
 	/* first define a socket
 	a socket is an I/O port like a file descriptor
@@ -38,21 +39,23 @@ int main()
 	WSADATA wsaData;              /* This is struct holds Windows required data */
 	int nCode;
 #endif
-	char buffer[100];
+    
+
+	char buffer[BUF_LEN];
 	struct sockaddr_in server;    /* this holds my IP address and port info */
 	struct sockaddr_in from;      /* this holds the same info for the sender of the packet
 								  I received */
 								  /* the call to WSAStartup is Windows magic */
 #if defined(_WIN32) || defined(_WIN64) 
 	if ((nCode = WSAStartup(MAKEWORD(1, 1), &wsaData)) != 0) {
-		printf("Opps! WSA error %d\n", nCode);
-		exit;
+		printf("Opps! WSA error %u\n", nCode);
+		return -1;
 	}
 #endif
 	/* create a socket called sock. It is a datagram socket */
-	sock = socket(AF_INET, SOCK_DGRAM, 0);
+	sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if (sock < 0) {
-		printf("socket error = %d\n", sock);
+		printf("socket error = %llu\n", sock);
 		return -1;
 	}
 	server.sin_family = AF_INET;   /* initialize the server address family */
@@ -80,15 +83,16 @@ int main()
 		*/
 		addrlen = sizeof(from);
 		size = recvfrom(sock, buffer, nbytes, flags, (struct sockaddr *)&from, &addrlen);
-		if ((size > 0) && (size < 99)) {
+		if ((size > 0) && (size < BUF_LEN)) {
 			buffer[size] = '\0';      /* add the null byte so buffer now holds a string */
 			i = puts((char *)buffer);    /* write this string to the display */
+            //fflush(stdout);
 		}
 
 		//echo message back to client
 
 		if (sock < 0) {//
-			printf("socket error = %d\n", sock);//
+			printf("socket error = %llu\n", sock);//
 			return -1;//
 		}//
 
