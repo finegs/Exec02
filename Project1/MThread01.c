@@ -30,7 +30,7 @@ void WriteTitle(int ThreadNum);    // Display title bar information
 HANDLE  hConsoleOut;                 // Handle to the console   
 HANDLE  hRunMutex;                   // "Keep Running" mutex   
 HANDLE  hScreenMutex;                // "Screen update" mutex  
-int     ThreadNr;                    // Number of threads started   
+int     threadNr;                    // Number of threads started   
 CONSOLE_SCREEN_BUFFER_INFO csbiInfo; // Console information  
 
 int main() // Thread One   
@@ -44,7 +44,7 @@ int main() // Thread One
 	// Create the mutexes and reset thread count.  
 	hScreenMutex = CreateMutex(NULL, FALSE, NULL);  // Cleared   
 	hRunMutex = CreateMutex(NULL, TRUE, NULL);      // Set   
-	ThreadNr = 0;
+	threadNr = 0;
 
 	// Start waiting for keyboard input to dispatch threads or exit.  
 	KbdFunc();
@@ -57,11 +57,11 @@ int main() // Thread One
 
 void ShutDown(void) // Shut down threads   
 {
-	while (ThreadNr > 0)
+	while (threadNr > 0)
 	{
 		// Tell thread to die and record its death.  
 		ReleaseMutex(hRunMutex);
-		ThreadNr--;
+		threadNr--;
 	}
 
 	// Clean up display when done  
@@ -77,11 +77,11 @@ void KbdFunc(void) // Dispatch and count threads.
 	{
 		KeyInfo = _getch();
 		if (tolower(KeyInfo) == 'a' &&
-			ThreadNr < MAX_THREADS)
+			threadNr < MAX_THREADS)
 		{
-			ThreadNr++;
-			_beginthread(BounceProc, 0, &ThreadNr);
-			WriteTitle(ThreadNr);
+			threadNr++;
+			_beginthread(BounceProc, 0, &threadNr);
+			WriteTitle(threadNr);
 		}
 	} while (tolower(KeyInfo) != 'q');
 

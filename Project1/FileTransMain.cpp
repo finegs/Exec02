@@ -402,3 +402,174 @@ int main(int argc, char **argv)
 
 
 #endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include <sstream>
+
+//#include "..\MyUtil\MyUtil.h"
+#include <ctime>
+#include <sys/timeb.h>
+#include "MLogger.h"
+
+static char* trim(char* str) {
+    int len = 0;
+    if ((len = (int)strlen(str)) > 1
+        && '\n' == str[len-1]) {
+        str[len - 1] = '\0';
+    }
+    return str;
+}
+
+static char* nowTime(char* str) {
+    char t[24];
+    struct tm timeinfo;
+    struct timeb tm;
+
+    memset(t, '\0', sizeof(char) * 24);
+
+    ftime(&tm);
+    localtime_s(&timeinfo, &tm.time);
+
+    strftime(t, 20, "%Y-%m-%d %H:%M:%S", &timeinfo);
+    sprintf_s(str, 24, "%s.%03u", t, tm.millitm);
+    return str;
+}
+
+int* getPi(char* p) {
+    int m = (int)strlen(p), j = 0;
+    int* pi;
+    if (NULL == (pi = (int*)malloc(sizeof(int)*m))) {
+        fprintf(stderr, "getPi failed : malloc failed, Size=%d\n", m);
+        return NULL;
+    }
+    memset(pi, 0, sizeof(int)*m);
+    for (int i = 1; i < m; i++) {
+        while (j > 0 && p[i] != p[j]) j = pi[j - 1];
+        if (p[i] == p[j]) pi[i] = ++j;
+    }
+    return pi;
+}
+
+int* kmp(char* s, char* p, int* ansi) {
+    int* ans;
+    int* pi = getPi(p);
+    int n = (int)strlen(s), m = (int)strlen(p), j = 0;
+
+    if (NULL == (ans = (int*)malloc(sizeof(int)*(n))))
+        return NULL;
+
+    memset(ans, -1, sizeof(int)*n); // init ans array with -1 (no setting)
+    *ansi = 0;
+
+    for (int i = 0; i < n; i++) {
+        while (j > 0 && s[i] != p[j]) j = pi[j - 1];
+        if (s[i] == p[j]) {
+            if (j == m - 1) {
+                ans[*ansi] = i - m + 1;
+                j = pi[j];
+                (*ansi)++;
+            }
+            else {
+                j++;
+            }
+        }
+    }
+
+    if (pi) {
+        free(pi);
+        pi = NULL;
+    }
+
+    return ans;
+}
+
+int intslen(void* ar, int(isValue)(void* vp), int(isEnd)(void* vp)) {
+    int i, cnt;
+    cnt = 0;
+    for (i = 0; !isEnd(((int*)ar)+i); i++) 
+        if(isValue(((int*)ar)+i)) cnt++;
+    return cnt;
+}
+ 
+int isIntArrEnd(void* vp) {
+    return *((int*)vp) < 0;
+}
+
+int isValueSet(void* vp) {
+    return *((int*)vp) > 0;
+}
+
+int main(int argc, char* argv[]) {
+
+#if 0
+    static int AR_SIZE = 10;
+
+    int* ar;
+
+    ar = (int*)malloc(sizeof(int) * AR_SIZE);
+
+    memset(ar, 0x00, sizeof(int)*AR_SIZE);
+
+    for (int i = 0; i < AR_SIZE; i++) {
+        printf("% 10d : ar[%d] = %d\n", i, i, *((int*)ar + i));
+        printf("% 10d : ar[%d] = %d\n", i, i, ar[i]);
+    }
+
+#endif // 0
+
+#if 1
+    int LINE_SIZE = 1024 * 1024;
+    char* line, *pattern;
+    char* ts;
+
+    if (NULL == (ts = (char*)malloc(sizeof(char) * 20))) {
+        fprintf(stderr, "timestamp malloc failed : %d\n", 20);
+        return EXIT_FAILURE;
+    }
+
+    if (NULL == (line = (char*)malloc(LINE_SIZE))) {
+        fprintf(stderr, "%s : line malloc failed : %d\n", nowTime(ts), LINE_SIZE);
+        return EXIT_FAILURE;
+    }
+    if (NULL == (pattern = (char*)malloc(LINE_SIZE))) {
+        fprintf(stderr, "%s : pattern malloc failed : %d\n", nowTime(ts), LINE_SIZE);
+        return EXIT_FAILURE;
+    }
+
+    memset(ts, '\0', sizeof(char)*20);
+    memset(line, '\0', sizeof(char)*LINE_SIZE);
+    memset(pattern, '\0', sizeof(char)*LINE_SIZE);
+
+    printf("%s : Eneter String : ", nowTime(ts)); fflush(stdout);
+    if (NULL == (fgets(line, LINE_SIZE, stdin))) {
+        return EXIT_SUCCESS;
+    }
+    trim(line);
+    printf("%s : Eneter Pattern : ", nowTime(ts)); fflush(stdout);
+    if (NULL == (fgets(pattern, LINE_SIZE, stdin))) {
+        return EXIT_SUCCESS;
+    }
+    trim(pattern);
+
+    printf("%s : String : %s, Pattern : %s\n", nowTime(ts), line, pattern);
+    int ansi;
+    int* ans = kmp(line, pattern, &ansi);
+    int cnt = 0;
+    printf("%s : ANSI = %d, Match Count : %d\n", nowTime(ts), ansi, cnt = intslen(ans, isValueSet, isIntArrEnd));
+    for (int i = 0; i < ansi; i++)
+    {
+        printf("  : ANS[%d] = %d\n", i, *(ans+i));
+    }
+
+    free(ans);
+    free(line);
+    free(pattern);
+
+    ans = NULL, line = NULL, pattern = NULL;
+#endif // 0
+
+
+}

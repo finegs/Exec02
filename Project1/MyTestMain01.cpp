@@ -586,9 +586,9 @@ int main(int argc, char* argv[]) {
 #include <memory.h>
 #include <string.h>
 
-#include "List.h"
+#include "MyList.h"
 
-#include "Service.h"
+#include "MyService.h"
 
 void mdestroy(void *data) {
 	if (data == NULL) return;
@@ -803,7 +803,7 @@ int main(int argc, char ** argv) {
 						udpSvc->ip = "0.0.0.0";
 						udpSvc->port = port;
 
-						destroyUDPService(udpSvc);
+						stopUDPService(udpSvc);
 					}
 				}
 				else {

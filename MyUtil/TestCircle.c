@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "..\MyUtil\CircleQueue.h"
+#include "MyCircleQueue.h"
+
+int displayMenu();
 
 int main(int argc, char* argv[]) {
     int choice;
@@ -14,7 +16,7 @@ int main(int argc, char* argv[]) {
     que.init = initCirQue;
     que.dispose = disposeCirQue;
     que.insert = insertCirQue;
-    que.delete = deleteCirQue;
+    que.remove = removeCirQue;
     que.print = printCirQue;
 
     // init
@@ -40,7 +42,7 @@ int main(int argc, char* argv[]) {
             scanf("%d", &n);
             for (i = 0; i < n; i++)
             {
-                que.delete(&que, &d);
+                que.remove(&que, &d);
                 printf("Removed data[%d]=%d\n", i, d);
             }
         }
@@ -62,3 +64,17 @@ int main(int argc, char* argv[]) {
 
     return EXIT_SUCCESS;
 }
+
+
+int displayMenu() {
+    int choice;
+
+    printf("\n1(Insert Data)");
+    printf(", 2(Delete Data)");
+    printf(", 3(Display Data)");
+    printf(", 4(Quit the Program)");
+    printf("\nEnter your choice:");
+    scanf("%d", &choice);
+    return choice;
+}
+

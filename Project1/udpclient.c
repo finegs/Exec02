@@ -195,6 +195,10 @@ int main()
             nbytes--;
         }
 
+        if (strstr(buffer, "-t") != NULL) {
+
+        }
+
 		size = sendto(sock, (char *)buffer, (int)nbytes, flags, (struct sockaddr *)&target_pc, sizeof(target_pc));
         
 		printf("Sendto : Msg = %s, Len = %d, Size = %d\n", buffer, (int)nbytes, (int)size);

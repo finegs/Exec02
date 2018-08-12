@@ -2,7 +2,6 @@
 #include <thread>
 #include <atomic>
 
-
 std::atomic<bool> ready(false);
 
 void count1m(int id) {

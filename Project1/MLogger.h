@@ -9,20 +9,19 @@
 #include <queue>
 #include <condition_variable>
 
-#ifdef __cplusplus
-
 #include <ctime>
 #include <sys/timeb.h>
-
-extern "C" {
-#endif
-
-char* nowTime(char* str);
-char* t2s(char* str, timeb tm);
-
-#ifdef __cplusplus
-}
-#endif
+//
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
+//
+//char* nowTime(char* str);
+//char* t2s(char* str, timeb tm);
+//
+//#ifdef __cplusplus
+//}
+//#endif
 
 enum MLogLevel {
 	Error

@@ -16,9 +16,6 @@
     <Filter Include="소스 파일\Test">
       <UniqueIdentifier>{084b376c-81f3-4e3e-9508-c74e55e2dc48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Main">
-      <UniqueIdentifier>{6f9c840b-b8ab-4247-823a-cbd057a5a431}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Project1\MLogger.cpp">
@@ -48,14 +45,8 @@
     <ClCompile Include="..\Project1\MyEvents.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="LockFreeMain.cpp">
-      <Filter>소스 파일\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Project1\FileTransMain.cpp">
-      <Filter>소스 파일\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="ChronoMain.cpp">
-      <Filter>소스 파일\Main</Filter>
+    <ClCompile Include="MyUtil.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +75,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\Project1\MyHash.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MyUtil.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

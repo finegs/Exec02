@@ -79,7 +79,7 @@ void readInput() { // Dispatch and Count threads
         if (tolower(keyInfo) == 'a' &&
             threadNr < MAX_THREADS) {
             threadNr++;
-            _beginthread(bounceProc, 0, &threadNr, threadNr);
+            _beginthread(bounceProc, 0, &threadNr);
             writeTitle(threadNr);
         }
         if (tolower(keyInfo) == 'd' && 
@@ -130,13 +130,13 @@ void bounceProc(void* pMyId, int myThreadId) {
 
         // If we still occupy the old screen position, blank it out.
         ReadConsoleOutputCharacter(hConsoleOut, &oldCell, 1, old, &dummy);
-        ReadConsoleOutputCharacter(hConsoleOut, &oldAttrb, 1, old, &dummy);
+        ReadConsoleOutputCharacter(hConsoleOut, (char*)&oldAttrb, 1, old, &dummy);
         if ((oldCell == myCell) && (oldAttrb == myAttrib)) {
             WriteConsoleOutputCharacter(hConsoleOut, &blankCell, 1, old, &dummy);
         }
 
         WriteConsoleOutputCharacter(hConsoleOut, &myCell, 1, coords, &dummy);
-        WriteConsoleOutputCharacter(hConsoleOut, &myAttrib, 1, coords, &dummy);
+        WriteConsoleOutputCharacter(hConsoleOut, (char*)&myAttrib, 1, coords, &dummy);
 
         // Release screen Mutex
         ReleaseMutex(hScreenMutex);

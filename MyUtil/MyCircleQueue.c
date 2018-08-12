@@ -49,7 +49,7 @@ int insertCirQue(CirQue *que, int newData) {
     }
 }
 
-int deleteCirQue(CirQue *que, int *data) {
+int removeCirQue(CirQue *que, int *data) {
     if (cirque_count(que) == 0) {
         return -1;
     }
@@ -78,16 +78,4 @@ int printCirQue(CirQue *que) {
     return EXIT_SUCCESS;
 }
 
-
-int displayMenu() {
-    int choice;
-
-    printf("\n1(Insert Data)");
-    printf(", 2(Delete Data)");
-    printf(", 3(Display Data)");
-    printf(", 4(Quit the Program)");
-    printf("\nEnter your choice:");
-    scanf("%d", &choice);
-    return choice;
-}
 

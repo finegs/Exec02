@@ -9,10 +9,7 @@
 
 using std::chrono::system_clock;
 
-
 std::mutex mtx;
-
-
 
 void print_even(int x) {
 

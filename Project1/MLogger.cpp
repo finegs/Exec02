@@ -8,31 +8,9 @@
 #include <string>
 #include <sstream>
 #include <thread>
+
 #include "MLogger.h"
-
-char* nowTime(char* str) {
-	char t[24];
-	struct tm timeinfo;
-	struct timeb tm;
-
-	ftime(&tm);
-	localtime_s(&timeinfo, &tm.time);
-
-	strftime(t, 20, "%Y-%m-%d %H:%M:%S", &timeinfo);
-	sprintf_s(str, 24, "%s.%03u", t, tm.millitm);
-	return str;
-}
-
-char* t2s(char* str, timeb tm) {
-	char t[24];
-	struct tm ti;
-
-	localtime_s(&ti, &tm.time);
-
-	strftime(t, 20, "%Y-%m-%d %H:%M:%S", &ti);
-	sprintf_s(str, 24, "%s.%03u", t, tm.millitm);
-	return str;
-}
+#include "..\MyUtil\MyUtil.h"
 
 MLogMsg::MLogMsg(const char* _msg) : tm(new timeb()), msg(new char[sizeof(_msg)]) {
 	ftime(tm);

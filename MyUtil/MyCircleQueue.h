@@ -15,7 +15,7 @@ typedef struct CirQue_ {
     int(*init)(struct CirQue_ *que, int capacity);
     int(*dispose)(struct CirQue_ *que);
     int(*insert)(struct CirQue_ *que, const int newData);
-    int(*delete)(struct CirQue_ *que, int* data);
+    int(*remove)(struct CirQue_ *que, int* data);
     int(*print)(struct CirQue_ *que);
 } CirQue;
 
@@ -28,5 +28,5 @@ typedef struct CirQue_ {
 int initCirQue(CirQue *que, int capacity);
 int disposeCirQue(CirQue *que);
 int insertCirQue(CirQue *que, int newData);
-int deleteCirQue(CirQue *que, int *data);
+int removeCirQue(CirQue *que, int *data);
 int printCirQue(CirQue *que);
