@@ -414,6 +414,9 @@ int main(int argc, char **argv)
 #include <sys/timeb.h>
 #include "MLogger.h"
 
+#include "MyList.h"
+#include "..\MyUtil\MySort.h"
+
 static char* trim(char* str) {
     int len = 0;
     if ((len = (int)strlen(str)) > 1
@@ -502,6 +505,13 @@ int isValueSet(void* vp) {
     return *((int*)vp) > 0;
 }
 
+void printUsage() {
+    printf("Usage : add {word}\n");
+    printf("		remove {n times to remove}\n");
+    printf("		print\n");
+}
+
+
 int main(int argc, char* argv[]) {
 
 #if 0
@@ -520,7 +530,7 @@ int main(int argc, char* argv[]) {
 
 #endif // 0
 
-#if 1
+#if 0
     int LINE_SIZE = 1024 * 1024;
     char* line, *pattern;
     char* ts;
@@ -542,6 +552,7 @@ int main(int argc, char* argv[]) {
     memset(ts, '\0', sizeof(char)*20);
     memset(line, '\0', sizeof(char)*LINE_SIZE);
     memset(pattern, '\0', sizeof(char)*LINE_SIZE);
+
 
     printf("%s : Eneter String : ", nowTime(ts)); fflush(stdout);
     if (NULL == (fgets(line, LINE_SIZE, stdin))) {
@@ -570,6 +581,172 @@ int main(int argc, char* argv[]) {
 
     ans = NULL, line = NULL, pattern = NULL;
 #endif // 0
+
+#if 1
+    int LINE_SIZE = 1024 * 1024;
+    int isRun;
+    char *line, *cmd, *pattern;
+    char* ts;
+    List lp;
+    char* context = NULL;
+
+    if (NULL == (ts = (char*)malloc(sizeof(char) * 20))) {
+        fprintf(stderr, "timestamp malloc failed : %d\n", 20);
+        return EXIT_FAILURE;
+    }
+
+    if (NULL == (line = (char*)malloc(sizeof(char) * LINE_SIZE))) {
+        fprintf(stderr, "line buffer malloc failed : %d\n", LINE_SIZE);
+        if (ts) free(ts);
+        return EXIT_FAILURE;
+    }
+
+    isRun = 1; // Init : isRun(1) = run
+    memset(line, '\0', LINE_SIZE);
+    list_init(&lp, list_delement_destroy);
+
+    while (isRun && fgets(line, LINE_SIZE, stdin) != NULL) {
+
+        if ((cmd = strtok_s(line, " \n", &context)) == NULL) {
+            continue;
+        }
+
+        if (!strcmp(cmd, "exit")) {
+            isRun = 0;
+            break;
+        }
+        else if (!strcmp(cmd, "cls") || !strcmp(cmd, "clear")) {
+            system("cls");
+            continue;
+        }
+        else if (!strcmp(cmd, "size") || !strcmp(cmd, "info")) {
+            //list_info(&lp, '\0');
+            continue;
+        }
+        else if (!strcmp(cmd, "print")) {
+            //list_prt(&lp, '1');
+            fflush(stdin);
+        }
+        else if (!strcmp(cmd, "print2")) {
+            //list_prt(&lp, '2');
+            fflush(stdin);
+        }
+        else if (!strcmp(cmd, "remove")) {
+            int i, cnt;
+            char *word, *data;
+
+            cnt = 0;
+            if (NULL == (word = strtok_s(NULL, " \n", &context))) {
+                cnt = 1;
+            }
+
+            if (word) {
+                if (!strcmp("all", word)) {
+                    word = NULL;
+                    if (NULL == (word = (char*)malloc(sizeof(char) * 2))) return -1;
+
+                    memset(word, '\0', 2);
+                    printf("Are you sure to remove all(y/n)? (size=%d)", (int)list_size(&lp));
+
+                    scanf_s("%s", word);
+                    if (!strcmp("y", word) || !strcmp("Y", word)) {
+                        cnt = list_size(&lp);
+                    }
+
+                    free(word);
+                    word = NULL;
+                }
+                else {
+                    cnt = atoi(word);
+                    if (cnt > 0) {
+                        word = NULL;
+                        if (NULL == (word = (char*)malloc(sizeof(char) * 2))) {
+                            isRun = 0;
+                            break;
+                        }
+                        memset(word, '\0', 2);
+
+                        printf("Are you sure to remove %d words(y/n)?", cnt);
+
+                        scanf_s("%1s", word);
+                        fflush(stdin);
+                        if (strcmp("y", word) && strcmp("Y", word)) {
+                            cnt = 0;
+                        }
+
+                        free(word);
+                        word = NULL;
+                    }
+                }
+            }
+
+            if (cnt > list_size(&lp)) continue;
+
+            for (i = 0; i < cnt; i++) {
+                list_rem_next(&lp, NULL, (void**)&data);
+                printf("list[%i]=%s is removed\n", i, data);
+                free(data);
+                data = NULL;
+            }
+        }
+        else if (!strcmp(cmd, "add")) {
+            char *data;
+            char *newData;
+            while ((data = strtok_s(NULL, " \n", &context)) != NULL) {
+                size_t dataLen;
+                newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data) + 1));
+                memcpy(newData, data, dataLen - 1);
+                memset(newData + dataLen - 1, '\0', 1);
+                if (0 > list_ins_next(&lp, NULL, newData)) {
+                    isRun = 0;
+                    break;
+                }
+            }
+        }
+        else if (!strcmp(cmd, "madd")) {
+            int n;
+            char *data;
+            char *newData;
+            if ((data = strtok_s(NULL, " \n", &context)) == NULL) {
+                fflush(stdin);
+                continue;
+            }
+            else if ((n = atoi(data)) < 1) {
+                fflush(stdin);
+                continue;
+            }
+
+            while (isRun && (data = strtok_s(NULL, " \n", &context)) != NULL) {
+                for (int i = 0; i < n; i++) {
+                    size_t dataLen;
+                    if (NULL == (newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data) + 1)))) {
+                        isRun = 0;
+                        break;
+                    }
+                    memcpy(newData, data, dataLen - 1);
+                    memset(newData + dataLen - 1, '\0', 1);
+                    if (0 > list_ins_next(&lp, NULL, newData)) {
+                        free(newData);
+                        newData = NULL;
+                        isRun = 0;
+                        break;
+                    }
+                }
+            }
+        }
+        else {
+            printUsage();
+        }
+
+        memset(line, '\0', LINE_SIZE);
+        //scanf("%*[^\n]%*c");
+        //scanf("%*[^\n]");
+    }
+
+
+    return EXIT_SUCCESS;
+
+#endif
 
 
 }

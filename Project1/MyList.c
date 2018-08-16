@@ -11,6 +11,12 @@ void list_init(List *list, void(*destroy)(void *data)) {
 	return;
 }
 
+void list_delement_destroy(void *data) {
+    if (data == NULL) return;
+    free(data);
+    data = NULL;
+}
+
 void list_destroy(List *list) {
 	void *data;
 

@@ -587,333 +587,381 @@ int main(int argc, char* argv[]) {
 #include <string.h>
 
 #include "MyList.h"
+#include "..\MyUtil\MySort.h"
 
 #include "MyService.h"
-
-void mdestroy(void *data) {
-	if (data == NULL) return;
-	free(data);
-	data = NULL;
-}
 
 void printUsage() {
 	printf("Usage : add {word}\n");
 	printf("		remove {n times to remove}\n");
 	printf("		print\n");
 }
+#if 0
 
 int main(int argc, char ** argv) {
 
-	int isRun = 1;
-	List lp;
-	char *line, *cmd;
-	int len = 1024*1024;
+    int isRun = 1;
+    List lp;
+    char *line, *cmd, *line1;
+    int len = 1024 * 1024;
 
-	list_init(&lp, mdestroy);
+    list_init(&lp, list_delement_destroy);
 
-	if (NULL == (line = (char*)malloc(sizeof(char) * len))) return -1;
+    if (NULL == (line = (char*)malloc(sizeof(char) * len))) return -1;
+    if (NULL == (line1 = (char*)malloc(sizeof(char) * len))) {
+        free(line);
+        return  -1;
+    }
+    memset(line, '\0', len);
+    while (isRun && fgets(line, len, stdin) != NULL) {
+        //char* p;
+        //if (p = strchr(line, '\n')) {
+        //	*p = '\0';
+        //}
+        //else {
+        //	scanf("%*[^\n]%*c");
+        //}
 
-	memset(line, '\0', len);
-	while (isRun && fgets(line, len, stdin) != NULL) {
-		//char* p;
-		//if (p = strchr(line, '\n')) {
-		//	*p = '\0';
-		//}
-		//else {
-		//	scanf("%*[^\n]%*c");
-		//}
+        //memset(word, '\0', len);
 
-		//memset(word, '\0', len);
+        memcpy(line1, line, len);
+        line1[strcspn(line1, "\n")] = '\0';
 
-		if ((cmd = strtok(line, " \n")) == NULL) {
-			continue;
-		}
+        if ((cmd = strtok(line, " \n")) == NULL) {
+            continue;
+        }
 
-		if (!strcmp(cmd, "exit")) {
-			isRun = 0;
-			break;
-		}
-		else if (!strcmp(cmd, "cls") || !strcmp(cmd, "clear")) {
-			system("cls");
-			continue;
-		}
-		else if (!strcmp(cmd, "size") || !strcmp(cmd, "info")) {
-			list_info(&lp, '\0');
-			continue;
-		}
-		else if (!strcmp(cmd, "print")) {
-			list_prt(&lp, '1');
-			fflush(stdin);
-		}
-		else if (!strcmp(cmd, "print2")) {
-			list_prt(&lp, '2');
-			fflush(stdin);
-		}
-		else if (!strcmp(cmd, "remove")) {
-			int i, cnt;
-			char *word, *data;
+        if (!strcmp(cmd, "exit")) {
+            isRun = 0;
+            break;
+        }
+        else if (!strcmp(cmd, "cls") || !strcmp(cmd, "clear")) {
+            system("cls");
+            continue;
+        }
+        else if (!strcmp(cmd, "size") || !strcmp(cmd, "info")) {
+            list_info(&lp, '\0');
+            continue;
+        }
+        else if (!strcmp(cmd, "print")) {
+            list_prt(&lp, '1');
+            fflush(stdin);
+        }
+        else if (!strcmp(cmd, "print2")) {
+            list_prt(&lp, '2');
+            fflush(stdin);
+        }
+        else if (!strcmp(cmd, "remove")) {
+            int i, cnt;
+            char *word, *data;
 
-			cnt = 0;
-			if (NULL == (word = strtok(NULL, " \n"))) {
-				cnt = 1;
-			}
-			
-			if (word) {
-				if (!strcmp("all", word)) {
-					word = NULL;
-					if (NULL == (word = (char*)malloc(sizeof(char) * 2))) return -1;
+            cnt = 0;
+            if (NULL == (word = strtok(NULL, " \n"))) {
+                cnt = 1;
+            }
 
-					memset(word, '\0', 2);
-					printf("Are you sure to remove all(y/n)? (size=%d)", (int)list_size(&lp));
+            if (word) {
+                if (!strcmp("all", word)) {
+                    word = NULL;
+                    if (NULL == (word = (char*)malloc(sizeof(char) * 2))) return -1;
 
-					scanf("%s", word);
-					if (!strcmp("y", word) || !strcmp("Y", word)) {
-						cnt = list_size(&lp);
-					}
+                    memset(word, '\0', 2);
+                    printf("Are you sure to remove all(y/n)? (size=%d)", (int)list_size(&lp));
 
-					free(word);
-					word = NULL;
-				}
-				else {
-					cnt = atoi(word);
-					if (cnt > 0) {
-						word = NULL;
-						if (NULL == (word = (char*)malloc(sizeof(char) * 2))) {
-							isRun = 0;
-							break;
-						}
-						memset(word, '\0', 2);
+                    scanf("%s", word);
+                    if (!strcmp("y", word) || !strcmp("Y", word)) {
+                        cnt = list_size(&lp);
+                    }
 
-						printf("Are you sure to remove %d words(y/n)?", cnt);
+                    free(word);
+                    word = NULL;
+                }
+                else {
+                    cnt = atoi(word);
+                    if (cnt > 0) {
+                        word = NULL;
+                        if (NULL == (word = (char*)malloc(sizeof(char) * 2))) {
+                            isRun = 0;
+                            break;
+                        }
+                        memset(word, '\0', 2);
 
-						scanf("%1s", word);
-						fflush(stdin);
-						if (strcmp("y", word) && strcmp("Y", word)) {
-							cnt = 0;
-						}
+                        printf("Are you sure to remove %d words(y/n)?", cnt);
 
-						free(word);
-						word = NULL;
-					}
-				}
-			}
+                        scanf("%1s", word);
+                        fflush(stdin);
+                        if (strcmp("y", word) && strcmp("Y", word)) {
+                            cnt = 0;
+                        }
 
-			if (cnt > list_size(&lp)) continue;
-			
-			for (i = 0; i < cnt; i++) {
-				list_rem_next(&lp, NULL, (void**)&data);
-				printf("list[%i]=%s is removed\n", i, data);
-				free(data);
-				data = NULL;
-			}
-		}
-		else if (!strcmp(cmd, "add")) {
-			char *data;
-			char *newData;
-			while ((data = strtok(NULL, " \n")) != NULL) {
-				size_t dataLen;
-				newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data)+1));
-				memcpy(newData, data, dataLen-1);
-				memset(newData+dataLen-1, '\0', 1);
-				if (0 > list_ins_next(&lp, NULL, newData)) {
-					isRun = 0;
-					break;
-				}
-			}
-		}
-		else if (!strcmp(cmd, "madd")) {
-			int n;
-			char *data;
-			char *newData;
-			if ((data = strtok(NULL, " \n")) == NULL) {
-				fflush(stdin);
-				continue;
-			}
-			else if ((n = atoi(data)) < 1) {
-				fflush(stdin);
-				continue;
-			}
-	
-			while (isRun && (data = strtok(NULL, " \n")) != NULL) {
-				for (int i = 0; i < n; i++) {
-					size_t dataLen;
-					if (NULL == (newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data) + 1)))) {
-						isRun = 0;
-						break;
-					}
-					memcpy(newData, data, dataLen - 1);
-					memset(newData+dataLen-1, '\0', 1);
-					if (0 > list_ins_next(&lp, NULL, newData)) {
-						free(newData);
-						newData = NULL;
-						isRun = 0;
-						break;
-					}
-				}
-			}
-		}
-		else if (!strcmp(cmd, "udp")) {
-			char *data;
-			char *newData;
-			List al;
+                        free(word);
+                        word = NULL;
+                    }
+                }
+            }
 
-			if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
-			
-			if (!strcmp("-server", data)) {
-				if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+            if (cnt > list_size(&lp)) continue;
 
-				char *ip;
-				int port;
+            for (i = 0; i < cnt; i++) {
+                list_rem_next(&lp, NULL, (void**)&data);
+                printf("list[%i]=%s is removed\n", i, data);
+                free(data);
+                data = NULL;
+            }
+        }
+        else if (!strcmp(cmd, "add")) {
+            char *data;
+            char *newData;
+            while ((data = strtok(NULL, " \n")) != NULL) {
+                size_t dataLen;
+                newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data) + 1));
+                memcpy(newData, data, dataLen - 1);
+                memset(newData + dataLen - 1, '\0', 1);
+                if (0 > list_ins_next(&lp, NULL, newData)) {
+                    isRun = 0;
+                    break;
+                }
+            }
+        }
+        else if (!strcmp(cmd, "strpbrk")) {
+            //char *st = line1;
+            //int i;
+            //char *dest[10];
+            //for (i = 0; i < 10 && (dest[i] = strsep(&st, " ")) != NULL; i++)
+            //    ;//do nothing;
+            //for (int c = 0; c < i; c++)
+            //{
+            //    printf("arg[%d]=%s\n", c, dest[c]);
+            //}
 
-				ip = NULL;
-				port = -1;
+        }
+        else if (!strcmp(cmd, "madd")) {
+            int n;
+            char *data;
+            char *newData;
+            if ((data = strtok(NULL, " \n")) == NULL) {
+                fflush(stdin);
+                continue;
+            }
+            else if ((n = atoi(data)) < 1) {
+                fflush(stdin);
+                continue;
+            }
 
-				if (!strcmp("start", data)) {
-					if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+            while (isRun && (data = strtok(NULL, " \n")) != NULL) {
+                for (int i = 0; i < n; i++) {
+                    size_t dataLen;
+                    if (NULL == (newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data) + 1)))) {
+                        isRun = 0;
+                        break;
+                    }
+                    memcpy(newData, data, dataLen - 1);
+                    memset(newData + dataLen - 1, '\0', 1);
+                    if (0 > list_ins_next(&lp, NULL, newData)) {
+                        free(newData);
+                        newData = NULL;
+                        isRun = 0;
+                        break;
+                    }
+                }
+            }
+        }
+        else if (!strcmp(cmd, "udp")) {
+            char *data;
+            char *newData;
+            List al;
 
-					if (!strcmp("-port", data)) {
-						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+            if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
 
-						int port = atoi(data);
-						if (port < 1 || port > 65535) {
-							continue;
-						}
+            if (!strcmp("-server", data)) {
+                if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
 
-						UDPService* udpSvc = (UDPService*)malloc(sizeof(UDPService));
-						udpSvc->ip = "0.0.0.0";
-						udpSvc->port = port;
+                char *ip;
+                int port;
 
-						startUDPService(udpSvc);
+                ip = NULL;
+                port = -1;
 
-					}
-				}
-				else if (!strcmp("stop", data)) {
-					if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+                if (!strcmp("start", data)) {
+                    if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
 
-					if (!strcmp("-port", data)) {
-						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+                    if (!strcmp("-port", data)) {
+                        if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
 
-						int port = atoi(data);
-						if (port < 1 || port > 65535) {
-							continue;
-						}
+                        int port = atoi(data);
+                        if (port < 1 || port > 65535) {
+                            continue;
+                        }
 
+                        UDPService* udpSvc = (UDPService*)malloc(sizeof(UDPService));
+                        udpSvc->ip = "0.0.0.0";
+                        udpSvc->port = port;
 
-						UDPService* udpSvc = (UDPService*)malloc(sizeof(UDPService));
-						udpSvc->ip = "0.0.0.0";
-						udpSvc->port = port;
+                        startUDPService(udpSvc);
 
-						stopUDPService(udpSvc);
-					}
-				}
-				else {
-					printf("Unsupported action : %s\n", data);
-					data = NULL;
-					continue;
-				}
-			}
-			else if (!strcmp("-client", data)) {
-				if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+                    }
+                }
+                else if (!strcmp("stop", data)) {
+                    if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
 
-				char *ip;
-				int port;
-				size_t slen;
+                    if (!strcmp("-port", data)) {
+                        if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
 
-				ip = NULL;
-				port = -1;
-				if (!strcmp("connect", data)) {
-					if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
-
-					if (!strcmp("-ip", data)) {
-						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
-						
-						if (NULL == (ip = (char*)malloc(slen = sizeof(char)*strlen(data) + 1))) continue;
-
-						memset(ip, '\0', slen);
-						memcpy(ip, data, slen-1);
-					}
-
-					if (!strcmp("-port", data)) {
-						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
-
-						port = atoi(data);
-					}
-
-					if (NULL == ip || port < 1 || port > 65535) {
-						printf("IP is NULL or Unsupported UDP port : %d", port);
-						continue;
-					}
-
-					connectUDPServer(ip, port);
-				}
-				else if (!strcmp("disconnect", data)) {
-					if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
-
-					char *ip;
-					int port;
-					size_t slen;
-
-					ip = NULL;
-					if (!strcmp("-ip", data)) {
-						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
-
-						if (NULL == (ip = (char*)malloc(slen = sizeof(char)*strlen(data) + 1))) continue;
-
-						memset(ip, '\0', slen);
-						memcpy(ip, data, slen - 1);
-					}
-
-					if (!strcmp("-port", data)) {
-						if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
-
-						port = atoi(data);
-					}
-
-					if (NULL == ip || port < 1 || port > 65535) {
-						printf("IP is NULL or Unsupported UDP port : %d", port);
-						continue;
-					}
-
-					disconnectUDPServer(ip, port);
-				}
-				else {
-					printf("Unsupported action : %s\n", data);
-					data = NULL;
-					continue;
-				}
-			}
-
-			while ((data = strtok(NULL, " \n")) != NULL) {
-				size_t dataLen;
-				newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data) + 1));
-				memcpy(newData, data, dataLen - 1);
-				memset(newData + dataLen - 1, '\0', 1);
-				if (0 > list_ins_next(&al, NULL, newData)) {
-					isRun = 0;
-					break;
-				}
-			}
+                        int port = atoi(data);
+                        if (port < 1 || port > 65535) {
+                            continue;
+                        }
 
 
-		}
-		else if (!strcmp(cmd, "tcp")) {
-		}
-		else {
-			printUsage();
-		}
+                        UDPService* udpSvc = (UDPService*)malloc(sizeof(UDPService));
+                        udpSvc->ip = "0.0.0.0";
+                        udpSvc->port = port;
 
-		memset(line, '\0', len);
-		//scanf("%*[^\n]%*c");
-		//scanf("%*[^\n]");
-	}
+                        stopUDPService(udpSvc);
+                    }
+                }
+                else {
+                    printf("Unsupported action : %s\n", data);
+                    data = NULL;
+                    continue;
+                }
+            }
+            else if (!strcmp("-client", data)) {
+                if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
 
-	free(line);
-	line = NULL;
-	cmd = NULL;
+                char *ip;
+                int port;
+                size_t slen;
 
-	list_destroy(&lp);
+                ip = NULL;
+                port = -1;
+                if (!strcmp("connect", data)) {
+                    if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
 
-	return EXIT_SUCCESS;
+                    if (!strcmp("-ip", data)) {
+                        if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+                        if (NULL == (ip = (char*)malloc(slen = sizeof(char)*strlen(data) + 1))) continue;
+
+                        memset(ip, '\0', slen);
+                        memcpy(ip, data, slen - 1);
+                    }
+
+                    if (!strcmp("-port", data)) {
+                        if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+                        port = atoi(data);
+                    }
+
+                    if (NULL == ip || port < 1 || port > 65535) {
+                        printf("IP is NULL or Unsupported UDP port : %d", port);
+                        continue;
+                    }
+
+                    connectUDPServer(ip, port);
+                }
+                else if (!strcmp("disconnect", data)) {
+                    if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+                    char *ip;
+                    int port;
+                    size_t slen;
+
+                    ip = NULL;
+                    if (!strcmp("-ip", data)) {
+                        if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+                        if (NULL == (ip = (char*)malloc(slen = sizeof(char)*strlen(data) + 1))) continue;
+
+                        memset(ip, '\0', slen);
+                        memcpy(ip, data, slen - 1);
+                    }
+
+                    if (!strcmp("-port", data)) {
+                        if (NULL == (data = strtok(NULL, " \n"))) { data = NULL;  continue; }
+
+                        port = atoi(data);
+                    }
+
+                    if (NULL == ip || port < 1 || port > 65535) {
+                        printf("IP is NULL or Unsupported UDP port : %d", port);
+                        continue;
+                    }
+
+                    disconnectUDPServer(ip, port);
+                }
+                else {
+                    printf("Unsupported action : %s\n", data);
+                    data = NULL;
+                    continue;
+                }
+            }
+
+            while ((data = strtok(NULL, " \n")) != NULL) {
+                size_t dataLen;
+                newData = (char*)malloc(dataLen = (sizeof(char)*strlen(data) + 1));
+                memcpy(newData, data, dataLen - 1);
+                memset(newData + dataLen - 1, '\0', 1);
+                if (0 > list_ins_next(&al, NULL, newData)) {
+                    isRun = 0;
+                    break;
+                }
+            }
+        }
+        else if (!strcmp(cmd, "tcp")) {
+        }
+        else {
+            printUsage();
+        }
+
+        memset(line, '\0', len);
+        //scanf("%*[^\n]%*c");
+        //scanf("%*[^\n]");
+    }
+
+    if (line) free(line);
+    if (line1) free(line1);
+    line = NULL;
+    line1 = NULL;
+    cmd = NULL;
+
+    list_destroy(&lp);
+
+    return EXIT_SUCCESS;
 }
+#endif // 0
+
+#if 1
+int main(int argc, char* argv[]) {
+    char str[] = "This is a sample string";
+    char key[] = "aeiou";
+    char *pch;
+    printf("Vowels \"%s\" in '%s':\n", key, str);
+    pch = str;
+ 
+#if 0
+    pch = strpbrk(str, key);
+    while (pch != NULL) {
+        printf("%c ", *pch);
+        pch = strpbrk(pch + 1, key);
+    }
+
+#endif // 1
+
+#if 1
+    int i = 0;
+    while ((pch = strpbrk(pch + (i++), key)) != NULL) {
+        printf("[%d]=%c : %p:%zu\n", i, *pch, pch);
+    }
+#endif // 0
+
+    printf("\n");
+
+    pch = NULL;
+
+    return EXIT_SUCCESS;
+}
+#endif
+
 
 #endif

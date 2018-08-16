@@ -92,10 +92,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Programs\boost\boost_1_67_0\include\boost-1_67;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Programs\boost\boost_1_67_0\include\boost-1_67;C:\Dev\sqlite\sqlite-dll-win64-x64-3240000;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Programs\boost\boost_1_67_0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Programs\boost\boost_1_67_0\lib;C:\Dev\sqlite\sqlite-dll-win64-x64-3240000;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -105,10 +105,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Programs\boost\boost_1_67_0\include\boost-1_67;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Programs\boost\boost_1_67_0\include\boost-1_67;C:\Dev\sqlite\sqlite-dll-win64-x64-3240000;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Programs\boost\boost_1_67_0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Programs\boost\boost_1_67_0\lib;C:\Dev\sqlite\sqlite-dll-win64-x64-3240000;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -138,6 +138,8 @@
     <ClCompile Include="..\Project1\MyStack.c" />
     <ClCompile Include="..\Project1\MyService.c" />
     <ClCompile Include="MyCircleQueue.c" />
+    <ClCompile Include="MySort.c" />
+    <ClCompile Include="MyString.c" />
     <ClCompile Include="MyUtil.cpp" />
     <ClCompile Include="TestCircle.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -154,6 +156,8 @@
     <ClInclude Include="..\Project1\MyService.h" />
     <ClInclude Include="..\Project1\MyStack.h" />
     <ClInclude Include="MyCircleQueue.h" />
+    <ClInclude Include="MySort.h" />
+    <ClInclude Include="MyString.h" />
     <ClInclude Include="MyUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
