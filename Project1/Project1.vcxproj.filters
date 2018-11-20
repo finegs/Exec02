@@ -51,6 +51,9 @@
     <ClCompile Include="FileTrans.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="NamedLinkedList.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source.h">

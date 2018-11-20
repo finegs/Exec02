@@ -15,6 +15,8 @@ Global
 		Exec01|x86 = Exec01|x86
 		Exec02|x64 = Exec02|x64
 		Exec02|x86 = Exec02|x86
+		NamedLinkedList|x64 = NamedLinkedList|x64
+		NamedLinkedList|x86 = NamedLinkedList|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 		UDPServer2|x64 = UDPServer2|x64
@@ -37,6 +39,10 @@ Global
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Exec02|x64.Build.0 = Exec02|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Exec02|x86.ActiveCfg = Exec02|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Exec02|x86.Build.0 = Exec02|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.NamedLinkedList|x64.ActiveCfg = NamedLinkedList|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.NamedLinkedList|x64.Build.0 = NamedLinkedList|x64
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.NamedLinkedList|x86.ActiveCfg = NamedLinkedList|Win32
+		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.NamedLinkedList|x86.Build.0 = NamedLinkedList|Win32
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x64.ActiveCfg = Release|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x64.Build.0 = Release|x64
 		{4473396B-82AA-4B96-A4E3-6BED7479C4CD}.Release|x86.ActiveCfg = Release|Win32
