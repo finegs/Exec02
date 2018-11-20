@@ -7,7 +7,7 @@
     </Filter>
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -15,46 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main03.cpp">
+    <ClCompile Include="MyTCPCli01.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Main01.c">
+    <ClCompile Include="MyTCPSrv01.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Main02.cpp">
+    <ClCompile Include="MyTCPChatSrv01.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Exec01.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Exec02.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="FileTransMain.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MyUtil\LockFreeMain.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MThread01.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MThread02.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MyTestMain01.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Books.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="NamedLinkedList.cpp">
+    <ClCompile Include="MyTCPChatCli01.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Books.hpp">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="MyChatMessage.hpp">
+      <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
